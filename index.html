@@ -43,8 +43,8 @@
                     },
                     keyframes: {
                         marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' },
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
                         },
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
@@ -77,7 +77,16 @@
         .perspective-1000 { perspective: 1000px; }
         .preserve-3d { transform-style: preserve-3d; }
         .word-keep-all { word-break: keep-all; }
-        .marquee-track { width: max-content; }
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            will-change: transform;
+        }
+        .marquee-group {
+            display: flex;
+            width: max-content;
+            flex-shrink: 0;
+        }
 
         @media (max-width: 767px) {
             #hero {
@@ -181,30 +190,32 @@
         </div>
     </section>
 
-    <div class="relative bg-brand-500 py-3 md:py-4 border-y border-brand-400/30 overflow-hidden flex whitespace-nowrap">
-        <div class="marquee-track animate-marquee flex gap-6 md:gap-8 items-center text-white/90 font-black text-xl md:text-3xl tracking-wide md:tracking-wider uppercase">
-            <span>• 기호 1번 김희망</span>
-            <span class="text-brand-900">내일을 향한 선택</span>
-            <span>• 실천하는 일꾼</span>
-            <span class="text-brand-900">지역 경제 활성화</span>
-            <span>• 사통팔달 교통망</span>
-            <span class="text-brand-900">아이 키우기 좋은 도시</span>
-            <span>• 기호 1번 김희망</span>
-            <span class="text-brand-900">내일을 향한 선택</span>
-            <span>• 실천하는 일꾼</span>
-            <span class="text-brand-900">지역 경제 활성화</span>
-        </div>
-        <div class="marquee-track hidden sm:flex animate-marquee gap-8 items-center text-white/90 font-black text-2xl md:text-3xl tracking-wider uppercase absolute top-0 left-0" style="animation-delay: -12.5s;">
-            <span>• 기호 1번 김희망</span>
-            <span class="text-brand-900">내일을 향한 선택</span>
-            <span>• 실천하는 일꾼</span>
-            <span class="text-brand-900">지역 경제 활성화</span>
-            <span>• 사통팔달 교통망</span>
-            <span class="text-brand-900">아이 키우기 좋은 도시</span>
-            <span>• 기호 1번 김희망</span>
-            <span class="text-brand-900">내일을 향한 선택</span>
-            <span>• 실천하는 일꾼</span>
-            <span class="text-brand-900">지역 경제 활성화</span>
+    <div class="relative bg-brand-500 py-3 md:py-4 border-y border-brand-400/30 overflow-hidden whitespace-nowrap">
+        <div class="marquee-track animate-marquee items-center text-white/90 font-black text-xl md:text-3xl tracking-wide md:tracking-wider uppercase">
+            <div class="marquee-group gap-6 md:gap-8 items-center pr-6 md:pr-8">
+                <span>• 기호 1번 김희망</span>
+                <span class="text-brand-900">내일을 향한 선택</span>
+                <span>• 실천하는 일꾼</span>
+                <span class="text-brand-900">지역 경제 활성화</span>
+                <span>• 사통팔달 교통망</span>
+                <span class="text-brand-900">아이 키우기 좋은 도시</span>
+                <span>• 기호 1번 김희망</span>
+                <span class="text-brand-900">내일을 향한 선택</span>
+                <span>• 실천하는 일꾼</span>
+                <span class="text-brand-900">지역 경제 활성화</span>
+            </div>
+            <div class="marquee-group gap-6 md:gap-8 items-center pr-6 md:pr-8" aria-hidden="true">
+                <span>• 기호 1번 김희망</span>
+                <span class="text-brand-900">내일을 향한 선택</span>
+                <span>• 실천하는 일꾼</span>
+                <span class="text-brand-900">지역 경제 활성화</span>
+                <span>• 사통팔달 교통망</span>
+                <span class="text-brand-900">아이 키우기 좋은 도시</span>
+                <span>• 기호 1번 김희망</span>
+                <span class="text-brand-900">내일을 향한 선택</span>
+                <span>• 실천하는 일꾼</span>
+                <span class="text-brand-900">지역 경제 활성화</span>
+            </div>
         </div>
     </div>
 
