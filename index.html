@@ -59,6 +59,7 @@
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0a192f; }
         ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+        html, body { max-width: 100%; overflow-x: hidden; }
         
         .reveal {
             opacity: 0;
@@ -75,6 +76,30 @@
 
         .perspective-1000 { perspective: 1000px; }
         .preserve-3d { transform-style: preserve-3d; }
+        .word-keep-all { word-break: keep-all; }
+        .marquee-track { width: max-content; }
+
+        @media (max-width: 767px) {
+            #hero {
+                min-height: 100svh;
+                height: auto;
+                padding-top: 7rem;
+                padding-bottom: 5.5rem;
+            }
+
+            #mobile-menu {
+                left: 0;
+                right: 0;
+            }
+
+            .tilt-card {
+                cursor: default;
+            }
+
+            .tilt-card > div {
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50 overflow-x-hidden selection:bg-brand-500 selection:text-white">
@@ -110,7 +135,7 @@
         </div>
     </nav>
 
-    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" class="relative min-h-screen md:h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <video autoplay loop muted playsinline class="object-cover w-full h-full scale-105" id="hero-video">
                 <source src="https://player.vimeo.com/external/370331420.sd.mp4?s=d010629a43586b509bc975e52cbe9b736b47c0bc&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
@@ -119,8 +144,8 @@
             <div class="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDM5LjVoNDBWMHExIDAgMSAxIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMC41IiBmaWxsPSJub25lIi8+PC9zdmc+')] mix-blend-overlay"></div>
         </div>
         
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center mt-16">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-400/50 bg-brand-400/10 backdrop-blur-md mb-8 reveal">
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center mt-10 md:mt-16">
+            <div class="inline-flex max-w-full items-center gap-2 px-3 sm:px-4 py-2 rounded-full border border-brand-400/50 bg-brand-400/10 backdrop-blur-md mb-6 md:mb-8 reveal">
                 <span class="relative flex h-3 w-3">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-3 w-3 bg-brand-accent"></span>
@@ -128,23 +153,23 @@
                 <span class="text-brand-100 font-bold text-sm tracking-widest">제22대 국회의원 선거</span>
             </div>
             
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-6 tracking-tight reveal delay-100 word-keep-all">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-5 md:mb-6 tracking-tight reveal delay-100 word-keep-all">
                 미래를 앞당기는<br/>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-100 relative inline-block">
                     확실한 원동력
                 </span>
             </h1>
             
-            <p class="text-xl md:text-2xl text-gray-300 mb-12 font-light max-w-2xl reveal delay-200 word-keep-all">
+            <p class="text-base sm:text-lg md:text-2xl text-gray-300 mb-8 md:mb-12 font-light max-w-2xl reveal delay-200 word-keep-all px-2 sm:px-0">
                 말뿐인 약속이 아닌, <strong class="text-white font-bold">눈에 보이는 변화</strong>로 증명합니다. 김희망이 그리는 새로운 내일에 동참해주세요.
             </p>
             
-            <div class="flex flex-col sm:flex-row gap-6 reveal delay-300">
-                <a href="#pledges" class="group relative px-8 py-4 bg-brand-500 text-white rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+            <div class="flex w-full max-w-md sm:max-w-none flex-col sm:flex-row gap-4 sm:gap-6 reveal delay-300">
+                <a href="#pledges" class="group relative w-full sm:w-auto px-6 sm:px-8 py-4 bg-brand-500 text-white rounded-full font-bold text-base sm:text-lg overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.4)]">
                     <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
                     <span class="relative flex items-center gap-2">핵심 공약 보기 <i class="ph-bold ph-arrow-right"></i></span>
                 </a>
-                <button id="play-video-btn" class="flex items-center justify-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all">
+                <button id="play-video-btn" class="flex w-full sm:w-auto items-center justify-center gap-3 px-6 sm:px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/20 transition-all">
                     <i class="ph-fill ph-play-circle text-2xl text-brand-400"></i> 후보자 홍보영상
                 </button>
             </div>
@@ -156,8 +181,8 @@
         </div>
     </section>
 
-    <div class="bg-brand-500 py-4 border-y border-brand-400/30 overflow-hidden flex whitespace-nowrap">
-        <div class="animate-marquee flex gap-8 items-center text-white/90 font-black text-2xl md:text-3xl tracking-wider uppercase">
+    <div class="relative bg-brand-500 py-3 md:py-4 border-y border-brand-400/30 overflow-hidden flex whitespace-nowrap">
+        <div class="marquee-track animate-marquee flex gap-6 md:gap-8 items-center text-white/90 font-black text-xl md:text-3xl tracking-wide md:tracking-wider uppercase">
             <span>• 기호 1번 김희망</span>
             <span class="text-brand-900">내일을 향한 선택</span>
             <span>• 실천하는 일꾼</span>
@@ -169,7 +194,7 @@
             <span>• 실천하는 일꾼</span>
             <span class="text-brand-900">지역 경제 활성화</span>
         </div>
-        <div class="animate-marquee flex gap-8 items-center text-white/90 font-black text-2xl md:text-3xl tracking-wider uppercase absolute top-0" style="animation-delay: -12.5s;">
+        <div class="marquee-track hidden sm:flex animate-marquee gap-8 items-center text-white/90 font-black text-2xl md:text-3xl tracking-wider uppercase absolute top-0 left-0" style="animation-delay: -12.5s;">
             <span>• 기호 1번 김희망</span>
             <span class="text-brand-900">내일을 향한 선택</span>
             <span>• 실천하는 일꾼</span>
@@ -185,36 +210,36 @@
 
     <section id="about" class="py-24 bg-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
                 <div class="lg:col-span-5 lg:sticky lg:top-32 h-max reveal">
                     <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group">
                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="김희망 후보" class="w-full h-full object-cover transform transition duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-transparent to-transparent opacity-80"></div>
                         <div class="absolute bottom-8 left-8 right-8">
                             <span class="bg-brand-accent text-white px-3 py-1 rounded-md text-sm font-bold mb-3 inline-block">경제전문가</span>
-                            <h2 class="text-4xl font-black text-white mb-1">김 희 망</h2>
+                            <h2 class="text-3xl sm:text-4xl font-black text-white mb-1">김 희 망</h2>
                             <p class="text-brand-100 font-medium">Kim Hee-mang</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-7 pt-8 lg:pt-0">
+                <div class="lg:col-span-7 pt-2 lg:pt-0">
                     <div class="mb-12 reveal delay-100">
-                        <h3 class="text-3xl font-black text-brand-900 mb-6 flex items-center gap-4">
+                        <h3 class="text-2xl sm:text-3xl font-black text-brand-900 mb-6 flex items-center gap-4">
                             검증된 능력, 준비된 일꾼
                             <div class="h-1 flex-grow bg-gray-100 rounded-full"></div>
                         </h3>
-                        <p class="text-lg text-gray-600 leading-relaxed word-keep-all font-medium">
+                        <p class="text-base sm:text-lg text-gray-600 leading-relaxed word-keep-all font-medium">
                             지난 20년, 저는 현장에서 답을 찾았습니다. 탁상공론이 아닌 실제 주민들의 삶에 스며드는 정책을 설계해왔습니다. 서울시 정무부시장으로서 증명한 행정력과 결단력으로, 이제 우리 지역의 묵은 과제들을 속시원히 해결하겠습니다.
                         </p>
                     </div>
 
-                    <div class="relative border-l-4 border-brand-100 ml-4 space-y-12">
+                    <div class="relative border-l-4 border-brand-100 ml-3 sm:ml-4 space-y-8 sm:space-y-12">
                         <div class="relative pl-8 reveal delay-100">
                             <div class="absolute w-8 h-8 bg-brand-500 rounded-full -left-[18px] top-0 border-4 border-white shadow-md flex items-center justify-center">
                                 <div class="w-2 h-2 bg-white rounded-full animate-ping"></div>
                             </div>
-                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="bg-gray-50 p-5 sm:p-6 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <span class="text-brand-500 font-bold text-sm tracking-wider">2020 - 2023</span>
                                 <h4 class="text-xl font-bold text-gray-900 mt-1 mb-2">서울시 정무부시장 역임</h4>
                                 <p class="text-gray-600">지역 균형 발전 프로젝트 총괄 및 10조 원 규모 소상공인 지원 펀드 조성 주도</p>
@@ -222,7 +247,7 @@
                         </div>
                         <div class="relative pl-8 reveal delay-200">
                             <div class="absolute w-6 h-6 bg-brand-300 rounded-full -left-[14px] top-1 border-4 border-white shadow-sm"></div>
-                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="bg-gray-50 p-5 sm:p-6 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <span class="text-brand-500 font-bold text-sm tracking-wider">2016 - 2020</span>
                                 <h4 class="text-xl font-bold text-gray-900 mt-1 mb-2">희망경제연구소 소장</h4>
                                 <p class="text-gray-600">청년 일자리 창출 모델 연구 및 '미래 혁신 산업 단지' 밑그림 완성</p>
@@ -230,7 +255,7 @@
                         </div>
                         <div class="relative pl-8 reveal delay-300">
                             <div class="absolute w-6 h-6 bg-gray-300 rounded-full -left-[14px] top-1 border-4 border-white shadow-sm"></div>
-                            <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            <div class="bg-gray-50 p-5 sm:p-6 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                                 <span class="text-gray-500 font-bold text-sm tracking-wider">2010 - 2016</span>
                                 <h4 class="text-xl font-bold text-gray-900 mt-1 mb-2">국회의원 수석보좌관</h4>
                                 <p class="text-gray-600">골목상권 보호법안 등 다수의 민생 법안 기획 및 국회 통과 주도</p>
@@ -250,13 +275,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
                 <span class="inline-block py-1 px-4 border border-brand-400 text-brand-400 rounded-full text-sm font-bold mb-4">CORE PLEDGES</span>
-                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">내일을 바꾸는 3대 혁신 공약</h2>
-                <p class="text-gray-400 text-lg">데이터와 현장 경험을 바탕으로 실현 가능한 약속만 드립니다.</p>
+                <h2 class="text-3xl md:text-5xl font-black text-white mb-6">내일을 바꾸는 3대 혁신 공약</h2>
+                <p class="text-base md:text-lg text-gray-400 px-4 sm:px-0">데이터와 현장 경험을 바탕으로 실현 가능한 약속만 드립니다.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 perspective-1000">
                 <div class="tilt-card reveal delay-100 preserve-3d cursor-crosshair">
-                    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl h-full shadow-2xl transition-all duration-200">
+                    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 sm:p-8 rounded-3xl h-full shadow-2xl transition-all duration-200">
                         <div class="w-16 h-16 bg-gradient-to-br from-brand-400 to-brand-700 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 transform translate-z-[50px] shadow-lg">
                             <i class="ph-fill ph-chart-line-up"></i>
                         </div>
@@ -272,7 +297,7 @@
                 </div>
 
                 <div class="tilt-card reveal delay-200 preserve-3d cursor-crosshair">
-                    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl h-full shadow-2xl transition-all duration-200">
+                    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 sm:p-8 rounded-3xl h-full shadow-2xl transition-all duration-200">
                         <div class="w-16 h-16 bg-gradient-to-br from-brand-accent to-red-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 transform translate-z-[50px] shadow-lg">
                             <i class="ph-fill ph-train"></i>
                         </div>
@@ -288,7 +313,7 @@
                 </div>
 
                 <div class="tilt-card reveal delay-300 preserve-3d cursor-crosshair">
-                    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-8 rounded-3xl h-full shadow-2xl transition-all duration-200">
+                    <div class="bg-white/10 backdrop-blur-lg border border-white/20 p-6 sm:p-8 rounded-3xl h-full shadow-2xl transition-all duration-200">
                         <div class="w-16 h-16 bg-gradient-to-br from-teal-400 to-emerald-600 rounded-2xl flex items-center justify-center text-white text-3xl mb-8 transform translate-z-[50px] shadow-lg">
                             <i class="ph-fill ph-baby"></i>
                         </div>
@@ -305,7 +330,7 @@
             </div>
             
             <div class="mt-16 text-center reveal">
-                <button class="relative inline-flex items-center justify-center px-8 py-4 overflow-hidden font-bold text-white bg-transparent border-2 border-white rounded-full group hover:bg-white hover:text-brand-900 transition duration-300">
+                <button class="relative inline-flex w-full sm:w-auto items-center justify-center px-6 sm:px-8 py-4 overflow-hidden font-bold text-white bg-transparent border-2 border-white rounded-full group hover:bg-white hover:text-brand-900 transition duration-300">
                     <span class="absolute w-0 h-0 transition-all duration-500 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56"></span>
                     <span class="relative flex items-center gap-2"><i class="ph-bold ph-download-simple"></i> 전체 공약집 PDF 다운로드</span>
                 </button>
@@ -315,18 +340,18 @@
 
     <section id="gallery" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12 reveal">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-12 reveal">
                 <div>
-                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">발로 뛰는 현장</h2>
-                    <p class="text-lg text-gray-600">책상이 아닌 거리에 답이 있습니다.</p>
+                    <h2 class="text-3xl md:text-5xl font-black text-gray-900 mb-4">발로 뛰는 현장</h2>
+                    <p class="text-base md:text-lg text-gray-600">책상이 아닌 거리에 답이 있습니다.</p>
                 </div>
                 <button class="mt-4 md:mt-0 text-brand-500 font-bold hover:text-brand-700 flex items-center gap-1 group">
                     인스타그램에서 더 보기 <i class="ph-bold ph-arrow-right transform group-hover:translate-x-1 transition"></i>
                 </button>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[250px]">
-                <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-3xl reveal">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[220px] sm:auto-rows-[250px]">
+                <div class="sm:col-span-2 sm:row-span-2 relative group overflow-hidden rounded-3xl reveal min-h-[280px] sm:min-h-0">
                     <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="현장" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/20 to-transparent flex flex-col justify-end p-8 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                         <span class="text-brand-400 font-bold text-sm mb-2">2024. 03. 15</span>
@@ -345,7 +370,7 @@
                         <p class="text-white font-bold">봉사활동</p>
                     </div>
                 </div>
-                <div class="col-span-2 relative group overflow-hidden rounded-3xl reveal delay-100">
+                <div class="sm:col-span-2 relative group overflow-hidden rounded-3xl reveal delay-100 min-h-[220px] sm:min-h-0">
                     <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="현장" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
                     <div class="absolute inset-0 bg-gradient-to-t from-brand-900/80 to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
                         <h4 class="text-xl font-bold text-white">하천 생태계 복원 현장 점검</h4>
@@ -360,22 +385,22 @@
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-accent/10 rounded-full filter blur-[100px] pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 mb-16 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-8 reveal">
+            <div class="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-12 mb-16 backdrop-blur-sm flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 reveal">
                 <div>
                     <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-3">
                         <i class="ph-fill ph-hand-heart text-brand-accent text-3xl animate-pulse"></i> 투명한 정치 후원
                     </h3>
                     <p class="text-brand-100/70">여러분의 10만 원이 지역의 내일을 바꿉니다. (10만 원 이하 전액 세액공제)</p>
                 </div>
-                <div class="bg-black/30 px-6 py-4 rounded-2xl border border-white/10 w-full md:w-auto text-center md:text-left">
+                <div class="bg-black/30 px-4 sm:px-6 py-4 rounded-2xl border border-white/10 w-full md:w-auto text-center md:text-left">
                     <p class="text-sm text-brand-400 font-bold mb-1">농협 (예금주: 김희망후원회)</p>
-                    <p class="text-3xl font-mono font-bold text-white tracking-wider cursor-pointer hover:text-brand-accent transition" onclick="alert('계좌번호가 복사되었습니다.')" title="클릭하여 복사">
+                    <p class="text-2xl sm:text-3xl font-mono font-bold text-white tracking-wide sm:tracking-wider break-all cursor-pointer hover:text-brand-accent transition" onclick="alert('계좌번호가 복사되었습니다.')" title="클릭하여 복사">
                         123-4567-8901-23
                     </p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/10 pt-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 border-t border-white/10 pt-12">
                 <div class="md:col-span-1">
                     <a href="#" class="text-2xl font-black text-white tracking-tighter mb-4 block">
                         기호 <span class="text-brand-400">1</span> 김희망 캠프
@@ -390,7 +415,7 @@
                         <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-brand-500 hover:-translate-y-1 transition-all"><i class="ph-fill ph-facebook-logo text-xl"></i></a>
                     </div>
                 </div>
-                <div class="md:col-span-2 flex flex-col md:flex-row justify-end items-end gap-6 text-sm text-gray-500">
+                <div class="md:col-span-2 flex flex-col md:flex-row justify-end items-start md:items-end gap-4 md:gap-6 text-sm text-gray-500">
                     <p>&copy; 2024 김희망 선거캠프. All rights reserved.</p>
                     <div class="px-4 py-2 border border-gray-700 rounded-md font-bold text-gray-400">선거관리위원회 신고필</div>
                 </div>
@@ -447,41 +472,46 @@
         revealElements.forEach(el => revealObserver.observe(el));
 
         const tiltCards = document.querySelectorAll('.tilt-card');
+        const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
         
-        tiltCards.forEach(card => {
-            const inner = card.querySelector('div');
-            
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+        if (!isTouchDevice) {
+            tiltCards.forEach(card => {
+                const inner = card.querySelector('div');
                 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
                 
-                const rotateX = ((y - centerY) / centerY) * -10;
-                const rotateY = ((x - centerX) / centerX) * 10;
+                card.addEventListener('mouseleave', () => {
+                    inner.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                    inner.style.transition = `transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)`;
+                });
                 
-                inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                card.addEventListener('mouseenter', () => {
+                    inner.style.transition = `none`;
+                });
             });
-            
-            card.addEventListener('mouseleave', () => {
-                inner.style.transform = `rotateX(0deg) rotateY(0deg)`;
-                inner.style.transition = `transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)`;
-            });
-            
-            card.addEventListener('mouseenter', () => {
-                inner.style.transition = `none`;
-            });
-        });
+        }
 
         const heroVideo = document.getElementById('hero-video');
-        window.addEventListener('scroll', () => {
-            const scroll = window.scrollY;
-            if (scroll < window.innerHeight) {
-                heroVideo.style.transform = `translateY(${scroll * 0.3}px) scale(1.05)`;
-            }
-        });
+        if (!isTouchDevice) {
+            window.addEventListener('scroll', () => {
+                const scroll = window.scrollY;
+                if (scroll < window.innerHeight) {
+                    heroVideo.style.transform = `translateY(${scroll * 0.3}px) scale(1.05)`;
+                }
+            });
+        }
     </script>
 </body>
 </html>
