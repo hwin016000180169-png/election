@@ -78,14 +78,21 @@
         .preserve-3d { transform-style: preserve-3d; }
         .word-keep-all { word-break: keep-all; }
         .marquee-track {
-            display: flex;
+            display: inline-flex;
             width: max-content;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
+            line-height: 1;
             will-change: transform;
         }
         .marquee-group {
-            display: flex;
+            display: inline-flex;
             width: max-content;
             flex-shrink: 0;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
         }
 
         @media (max-width: 767px) {
@@ -93,7 +100,7 @@
                 min-height: 100svh;
                 height: auto;
                 padding-top: 7rem;
-                padding-bottom: 5.5rem;
+                padding-bottom: 7.5rem;
             }
 
             #mobile-menu {
@@ -107,6 +114,15 @@
 
             .tilt-card > div {
                 transform: none !important;
+            }
+
+            .hero-scroll-indicator {
+                bottom: 1.25rem;
+                gap: 0.125rem;
+            }
+
+            .hero-scroll-indicator span {
+                font-size: 0.625rem;
             }
         }
     </style>
@@ -184,15 +200,15 @@
             </div>
         </div>
 
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-70">
+        <div class="hero-scroll-indicator absolute bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-70 z-20">
             <span class="text-white text-xs tracking-widest uppercase font-bold">Scroll</span>
             <i class="ph-bold ph-caret-double-down text-white text-xl"></i>
         </div>
     </section>
 
-    <div class="relative bg-brand-500 py-3 md:py-4 border-y border-brand-400/30 overflow-hidden whitespace-nowrap">
-        <div class="marquee-track animate-marquee items-center text-white/90 font-black text-xl md:text-3xl tracking-wide md:tracking-wider uppercase">
-            <div class="marquee-group gap-6 md:gap-8 items-center pr-6 md:pr-8">
+    <div class="relative bg-brand-500 py-3 md:py-4 border-y border-brand-400/30 overflow-hidden whitespace-nowrap leading-none">
+        <div class="marquee-track animate-marquee text-white/90 font-black text-xl md:text-3xl tracking-wide md:tracking-wider uppercase">
+            <div class="marquee-group gap-6 md:gap-8 pr-6 md:pr-8">
                 <span>• 기호 1번 김희망</span>
                 <span class="text-brand-900">내일을 향한 선택</span>
                 <span>• 실천하는 일꾼</span>
@@ -204,7 +220,7 @@
                 <span>• 실천하는 일꾼</span>
                 <span class="text-brand-900">지역 경제 활성화</span>
             </div>
-            <div class="marquee-group gap-6 md:gap-8 items-center pr-6 md:pr-8" aria-hidden="true">
+            <div class="marquee-group gap-6 md:gap-8 pr-6 md:pr-8" aria-hidden="true">
                 <span>• 기호 1번 김희망</span>
                 <span class="text-brand-900">내일을 향한 선택</span>
                 <span>• 실천하는 일꾼</span>
